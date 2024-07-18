@@ -1,0 +1,19 @@
+[1mdiff --git a/src/main/java/com/loja/projetolojaweb2/service/serviceInterface/PessoaServiceInterface.java b/src/main/java/com/loja/projetolojaweb2/service/serviceInterface/PessoaServiceInterface.java[m
+[1mindex 8ac37a3..d23160c 100644[m
+[1m--- a/src/main/java/com/loja/projetolojaweb2/service/serviceInterface/PessoaServiceInterface.java[m
+[1m+++ b/src/main/java/com/loja/projetolojaweb2/service/serviceInterface/PessoaServiceInterface.java[m
+[36m@@ -2,6 +2,8 @@[m [mpackage com.loja.projetolojaweb2.service.serviceInterface;[m
+ [m
+ import com.loja.projetolojaweb2.domain.Pessoa;[m
+ [m
+[32m+[m[32mimport java.util.List;[m
+[32m+[m
+ public interface PessoaServiceInterface {[m
+ [m
+    Pessoa fazerLogin();[m
+[36m@@ -13,4 +15,5 @@[m [mpublic interface PessoaServiceInterface {[m
+    Pessoa configurarConta();[m
+ [m
+ [m
+[32m+[m[32m   List<Pessoa> list();[m
+ }[m

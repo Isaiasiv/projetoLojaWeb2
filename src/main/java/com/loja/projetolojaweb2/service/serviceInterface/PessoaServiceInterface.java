@@ -2,6 +2,8 @@ package com.loja.projetolojaweb2.service.serviceInterface;
 
 import com.loja.projetolojaweb2.domain.Pessoa;
 
+import java.util.List;
+
 public interface PessoaServiceInterface {
 
    Pessoa fazerLogin();
@@ -13,4 +15,5 @@ public interface PessoaServiceInterface {
    Pessoa configurarConta();
 
 
+   List<Pessoa> list();
 }
