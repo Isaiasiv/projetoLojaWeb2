@@ -30,5 +30,10 @@ public class PessoaService implements PessoaServiceInterface {
         return null;
     }
 
+    @Override
+    public List<Pessoa> list() {
+        return List.of();
+    }
+
 
 }
