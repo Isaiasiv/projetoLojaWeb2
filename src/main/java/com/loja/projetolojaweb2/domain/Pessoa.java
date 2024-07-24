@@ -3,11 +3,13 @@ package com.loja.projetolojaweb2.domain;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.text.DateFormat;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "pessoa")
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -36,9 +38,6 @@ public class Pessoa {
     private String email;
 
     @Column(name = "data_nascimento",nullable = false)
-    private DateFormat dataNascimento;
+    private String dataNascimento;
 
-    public Pessoa() {
-
-    }
 }
