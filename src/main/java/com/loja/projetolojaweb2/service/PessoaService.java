@@ -29,11 +29,9 @@ public class PessoaService implements PessoaServiceInterface {
     public Pessoa configurarConta() {
         return null;
     }
-
     @Override
-    public List<Pessoa> list() {
-        return List.of();
+    public List<Pessoa> list(){
+
+        return List.of(new Pessoa("paulinho","PAULO",666432L,"paulo",null,"teste@gmail.com",null ));
     }
-
-
 }

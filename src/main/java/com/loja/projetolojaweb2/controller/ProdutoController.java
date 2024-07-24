@@ -73,4 +73,8 @@ public class ProdutoController {
     public List<Produto> quantidade(@PathVariable("quantidade") int quantidade) {
         return produtoService.findByQuantidade(quantidade);
     }
+    @GetMapping("/quantidade/{quantidade}")
+    public List<Produto> atualizarQuantidade(@PathVariable("quantidade") int quantidade) {
+        return produtoService.findByQuantidade(quantidade);
+    }
 }
