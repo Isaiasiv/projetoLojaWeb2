@@ -11,6 +11,8 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "usuario")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Usuario extends Pessoa {
 
 
@@ -19,16 +21,5 @@ public class Usuario extends Pessoa {
     private static final long serialVersionUID = 1L;
 
 
-    public Usuario() {}
 
-    @Builder
-    public Usuario(String login, String senha, Long cpf, String nome, String telefone, String email, DateFormat dataNascimento, List<String> favoritos) {
-        super(login, senha, cpf, nome, telefone, email, dataNascimento);
-        this.favoritos = favoritos;
-    }
-
-    @Builder
-    public Usuario(List<String> favoritos) {
-        this.favoritos = favoritos;
-    }
 }
