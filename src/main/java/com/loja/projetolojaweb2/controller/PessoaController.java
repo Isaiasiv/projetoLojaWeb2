@@ -4,14 +4,12 @@ import com.loja.projetolojaweb2.domain.Pessoa;
 import com.loja.projetolojaweb2.dto.pessoaDto.PessoaPostRequest;
 import com.loja.projetolojaweb2.dto.pessoaDto.PessoaPutRequest;
 import com.loja.projetolojaweb2.service.PessoaService;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -50,6 +48,19 @@ public class PessoaController {
 
     return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+//    @GetMapping(path = "/login/{login}/{senha}")
+//    public ResponseEntity<Pessoa> login(@PathVariable String login,
+//                                        @PathVariable String senha) {
+//        try{
+//            pessoaService.fazerLogin(login,senha);
+//            return new ResponseEntity<>(HttpStatus.OK);
+//        }catch (Exception ex){
+//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login ou senhas incorretos");
+//        }
+//
+//
+//    }
 
 
 }

@@ -18,7 +18,7 @@ public interface PessoaServiceInterface {
 
    void delete(String login);
 
-   Pessoa fazerLogin();
+   Pessoa fazerLogin(String usuario, String senha);
 
    Pessoa fazerLogout();
 

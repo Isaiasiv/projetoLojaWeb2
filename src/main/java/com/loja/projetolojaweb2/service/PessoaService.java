@@ -49,10 +49,16 @@ public class PessoaService implements PessoaServiceInterface {
         pessoaRepository.delete(encontrarPorIdOuLancarExcecao(login));
     }
 
-
+//Melhorar esse metodo
     @Override
-    public Pessoa fazerLogin() {
-        return null;
+    public Pessoa fazerLogin(String usuario, String senha) {
+        Pessoa pessoa = encontrarPorIdOuLancarExcecao(usuario);
+
+        if(pessoa.getLogin().equals(usuario) && pessoa.getSenha().equals(senha)) {
+            System.out.println("DEU CERTO!!!!");
+            return pessoa;
+        }
+    return null;
     }
 
     @Override
