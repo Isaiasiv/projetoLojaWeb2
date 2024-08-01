@@ -24,10 +24,9 @@ public class Funcionario extends Pessoa{
     @Column(name = "add_produto",nullable = true)
     private String addProduto;
 
-    //O tipo conta não está alterando
+
     public Funcionario(String login, String senha, Long cpf, String nome, String telefone, String email, String dataNascimento, int tipoConta, String vendas, int tipoVendendor, String addProduto) {
         super(login, senha, cpf, nome, telefone, email, dataNascimento, tipoConta);
-        this.setTipoConta(2);
         this.vendas = vendas;
         this.tipoVendendor = tipoVendendor;
         this.addProduto = addProduto;
