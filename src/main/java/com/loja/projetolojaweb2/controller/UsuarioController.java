@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/usuarios")
+@RequestMapping("api/v1/usuarios")
 @Log4j2
 @RequiredArgsConstructor
 public class UsuarioController {
@@ -37,7 +37,6 @@ public class UsuarioController {
     @PostMapping()
     public ResponseEntity<Pessoa> save(@RequestBody UsuarioPostRequest usuarioPostRequest ) {
         usuarioPostRequest.setTipoConta(1);
-        usuarioService.salvar(usuarioPostRequest);
         return new ResponseEntity<>(usuarioService.salvar(usuarioPostRequest), HttpStatus.CREATED);
     }
 

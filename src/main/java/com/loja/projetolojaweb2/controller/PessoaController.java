@@ -1,5 +1,6 @@
 package com.loja.projetolojaweb2.controller;
 
+import com.loja.projetolojaweb2.domain.Carrinho;
 import com.loja.projetolojaweb2.domain.Pessoa;
 import com.loja.projetolojaweb2.dto.pessoaDto.PessoaPostRequest;
 import com.loja.projetolojaweb2.dto.pessoaDto.PessoaPutRequest;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("pessoas")
+@RequestMapping("api/v1/pessoas")
 @Log4j2
 @RequiredArgsConstructor
 public class PessoaController {
@@ -27,7 +28,6 @@ public class PessoaController {
 
     @PostMapping()
     public ResponseEntity<Pessoa> save(@RequestBody PessoaPostRequest pessoaPostRequest) {
-        pessoaService.salvar(pessoaPostRequest);
     return new ResponseEntity<>(pessoaService.salvar(pessoaPostRequest), HttpStatus.CREATED);
     }
 

@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -48,4 +50,9 @@ public class Produto {
 
     @Column(nullable = false)
     private int quantidade;
+    @ManyToMany
+    @JoinTable(name = "produto_carrinho",
+            joinColumns = @JoinColumn(name = "produto_id"),
+            inverseJoinColumns = @JoinColumn(name = "carrinho_id"))
+    private List<Carrinho> carrinhos;
 }

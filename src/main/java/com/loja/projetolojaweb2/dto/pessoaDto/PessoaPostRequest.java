@@ -1,9 +1,12 @@
 package com.loja.projetolojaweb2.dto.pessoaDto;
 
+import com.loja.projetolojaweb2.domain.Carrinho;
+import com.loja.projetolojaweb2.domain.Endereco;
 import jakarta.persistence.Column;
 import lombok.Data;
 
 import java.text.DateFormat;
+import java.util.List;
 
 @Data
 public class PessoaPostRequest {
@@ -16,5 +19,7 @@ public class PessoaPostRequest {
     private String email;
     private String dataNascimento;
     private int tipoConta;
+    private List<Endereco> enderecos;
+    private Carrinho carrinho;
 
 }

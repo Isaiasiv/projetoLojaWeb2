@@ -7,6 +7,7 @@ import jakarta.persistence.InheritanceType;
 import jakarta.persistence.Table;
 import lombok.*;
 
+import javax.management.ConstructorParameters;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.List;
 @Entity
 @Table(name = "usuario")
 @NoArgsConstructor
+@AllArgsConstructor
 public class Usuario extends Pessoa {
 
     @Nullable
@@ -23,9 +25,9 @@ public class Usuario extends Pessoa {
     private static final long serialVersionUID = 1L;
 
     //No super o numero 1 é referente ao tipoConta.
-    public Usuario(String login, String senha, Long cpf, String nome, String telefone, String email, String dataNascimento, int tipoConta, List<String> favoritos) {
-        super(login, senha, cpf, nome, telefone, email, dataNascimento,tipoConta);
-        this.favoritos = favoritos;
-    }
+//    public Usuario(String login, String senha, Long cpf, String nome, String telefone, String email, String dataNascimento, int tipoConta, List<String> favoritos) {
+//        super(login, senha, cpf, nome, telefone, email, dataNascimento,tipoConta);
+//       this.favoritos = favoritos;
+    //}
 
 }
