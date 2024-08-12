@@ -1,8 +1,11 @@
 package com.loja.projetolojaweb2.dto.pessoaDto;
 
+import com.loja.projetolojaweb2.domain.Carrinho;
+import com.loja.projetolojaweb2.domain.Endereco;
 import lombok.Data;
 
 import java.text.DateFormat;
+import java.util.List;
 
 @Data
 public class PessoaPutRequest {
@@ -15,5 +18,7 @@ public class PessoaPutRequest {
     private String email;
     private String dataNascimento;
     private int tipoConta;
+    private List<Endereco> enderecos;
+    private Carrinho carrinho;
 
 }

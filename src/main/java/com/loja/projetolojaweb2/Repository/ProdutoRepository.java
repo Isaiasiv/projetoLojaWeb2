@@ -1,4 +1,4 @@
-package com.loja.projetolojaweb2.Repository;
+package com.loja.projetolojaweb2.repository;
 
 import com.loja.projetolojaweb2.domain.Produto;
 import org.springframework.data.jpa.repository.JpaRepository;

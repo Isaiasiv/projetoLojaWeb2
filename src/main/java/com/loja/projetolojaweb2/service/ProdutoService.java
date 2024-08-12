@@ -1,7 +1,7 @@
 package com.loja.projetolojaweb2.service;
 
 import com.loja.projetolojaweb2.domain.Produto;
-import com.loja.projetolojaweb2.Repository.ProdutoRepository;
+import com.loja.projetolojaweb2.repository.ProdutoRepository;
 import com.loja.projetolojaweb2.service.serviceInterface.ProdutoServicerInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,7 +11,6 @@ import java.util.List;
 @Service
 public class ProdutoService implements ProdutoServicerInterface {
 
-    @Autowired
     private ProdutoRepository produtoRepository;
 
     @Override

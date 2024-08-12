@@ -1,12 +1,11 @@
 package com.loja.projetolojaweb2.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Data
@@ -27,4 +26,9 @@ public class Produto {
     private String descricao;
     private double valor;
     private int quantidade;
+    @ManyToMany
+    @JoinTable(name = "produto_carrinho",
+            joinColumns = @JoinColumn(name = "produto_id"),
+            inverseJoinColumns = @JoinColumn(name = "carrinho_id"))
+    private List<Carrinho> carrinhos;
 }

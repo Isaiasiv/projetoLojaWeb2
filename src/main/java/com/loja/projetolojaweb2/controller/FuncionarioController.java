@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("/funcionarios")
+@RequestMapping("api/v1/funcionarios")
 @RestController
 @Log4j2
 @RequiredArgsConstructor
@@ -32,7 +32,6 @@ public class FuncionarioController {
     @PostMapping()
     public ResponseEntity<Funcionario> save(@RequestBody FuncionarioPostRequest funcionarioPostRequest) {
         funcionarioPostRequest.setTipoConta(2);
-        funcionarioService.salvar(funcionarioPostRequest);
         return new ResponseEntity<>(funcionarioService.salvar(funcionarioPostRequest), HttpStatus.CREATED);
     }
 
