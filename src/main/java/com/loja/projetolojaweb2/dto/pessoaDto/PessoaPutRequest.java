@@ -14,5 +14,6 @@ public class PessoaPutRequest {
     private String telefone;
     private String email;
     private String dataNascimento;
+    private int tipoConta;
 
 }

@@ -1,22 +1,24 @@
 package com.loja.projetolojaweb2.service.serviceInterface;
 
 import com.loja.projetolojaweb2.domain.Produto;
+import com.loja.projetolojaweb2.dto.produtoDto.ProdutoPostRequest;
+import com.loja.projetolojaweb2.dto.produtoDto.ProdutoPutRequest;
 
 import java.util.List;
 
-public interface ProdutoServicerInterface {
+public interface ProdutoServiceInterface {
 
     public String nome();
 
-    public void verificaProduto();
+    public Produto salvar(ProdutoPostRequest produtoPostRequest);
 
-    public void cadastrarProduto();
+    public void atualizar(ProdutoPutRequest produtoPutRequest);
 
-    public void alterarProduto();
+    public void delete(String produtoID);
 
-    public void excluirProduto();
+    public Produto encontrarPorIdOuLancarExcecao(String produto);
 
-    public void listarProdutos();
+    public List<Produto> listAll();
 
     public List<Produto> findByNome(String nome);
 

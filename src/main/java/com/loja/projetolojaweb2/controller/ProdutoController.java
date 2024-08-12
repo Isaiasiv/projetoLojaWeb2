@@ -1,22 +1,54 @@
 package com.loja.projetolojaweb2.controller;
 
+import com.loja.projetolojaweb2.domain.Pessoa;
 import com.loja.projetolojaweb2.domain.Produto;
+import com.loja.projetolojaweb2.dto.pessoaDto.PessoaPostRequest;
+import com.loja.projetolojaweb2.dto.pessoaDto.PessoaPutRequest;
+import com.loja.projetolojaweb2.dto.produtoDto.ProdutoPostRequest;
+import com.loja.projetolojaweb2.dto.produtoDto.ProdutoPutRequest;
 import com.loja.projetolojaweb2.service.ProdutoService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 @RestController
-@RequestMapping(value = "/produtos")
+@RequestMapping("produtos")
+@Log4j2
+@RequiredArgsConstructor
 public class ProdutoController {
 
-    @Autowired
-    private ProdutoService produtoService;
+    private final ProdutoService produtoService;
 
     @GetMapping("/produto")
     public String produto() {
         return "teste";
+    }
+
+    @PostMapping()
+    public ResponseEntity<Produto> save(@RequestBody ProdutoPostRequest produtoPostRequest) {
+        Produto savedProduto = produtoService.salvar(produtoPostRequest);
+        return new ResponseEntity<>(savedProduto, HttpStatus.CREATED);
+    }
+
+    @GetMapping()
+    public ResponseEntity<List<Produto>> list() {
+        return ResponseEntity.ok(produtoService.listAll());
+    }
+
+    @PutMapping()
+    public ResponseEntity<Produto> replace(@RequestBody ProdutoPutRequest produtoPutRequest) {
+        produtoService.atualizar(produtoPutRequest);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @DeleteMapping("/{produtoID}")
+    public ResponseEntity<Void> delete(@PathVariable String produtoID) {
+        produtoService.delete(produtoID);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @GetMapping("/nome/{nome}")
@@ -39,11 +71,6 @@ public class ProdutoController {
         return produtoService.findByCor(cor);
     }
 
-    @GetMapping("/imagem/{imagem}")
-    public List<Produto> imagem(@PathVariable("imagem") String imagem) {
-        return produtoService.findByImagem(imagem);
-    }
-
     @GetMapping("/fabricante/{fabricante}")
     public List<Produto> fabricante(@PathVariable("fabricante") String fabricante) {
         return produtoService.findByFabricante(fabricante);
@@ -59,11 +86,6 @@ public class ProdutoController {
         return produtoService.findBySubcategoria(subcategoria);
     }
 
-    @GetMapping("/descricao/{descricao}")
-    public List<Produto> descricao(@PathVariable("descricao") String descricao) {
-        return produtoService.findByDescricao(descricao);
-    }
-
     @GetMapping("/valor/{valor}")
     public List<Produto> valor(@PathVariable("valor") double valor) {
         return produtoService.findByValor(valor);
@@ -71,10 +93,6 @@ public class ProdutoController {
 
     @GetMapping("/quantidade/{quantidade}")
     public List<Produto> quantidade(@PathVariable("quantidade") int quantidade) {
-        return produtoService.findByQuantidade(quantidade);
-    }
-    @GetMapping("/quantidade/{quantidade}")
-    public List<Produto> atualizarQuantidade(@PathVariable("quantidade") int quantidade) {
         return produtoService.findByQuantidade(quantidade);
     }
 }

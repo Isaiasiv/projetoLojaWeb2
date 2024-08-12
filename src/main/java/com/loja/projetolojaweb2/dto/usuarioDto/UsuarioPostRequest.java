@@ -1,12 +1,11 @@
-package com.loja.projetolojaweb2.dto.pessoaDto;
+package com.loja.projetolojaweb2.dto.usuarioDto;
 
-import jakarta.persistence.Column;
 import lombok.Data;
 
-import java.text.DateFormat;
+import java.util.List;
 
 @Data
-public class PessoaPostRequest {
+public class UsuarioPostRequest {
 
     private String login;
     private String senha;
@@ -15,6 +14,6 @@ public class PessoaPostRequest {
     private String telefone;
     private String email;
     private String dataNascimento;
+    private List<String> favoritos;
     private int tipoConta;
-
 }

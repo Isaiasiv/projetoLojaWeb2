@@ -40,4 +40,7 @@ public class Pessoa {
     @Column(name = "data_nascimento",nullable = false)
     private String dataNascimento;
 
+    @Column(nullable = false, length = 2)
+    private int tipoConta;
+
 }

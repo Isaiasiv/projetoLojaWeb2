@@ -1,10 +1,6 @@
 package com.loja.projetolojaweb2.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,7 +15,9 @@ public class Avaliacao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(nullable = false, length = 5,unique = false)
     private int estrela;
+    @Column(nullable = false, length = 240,unique = false)
     private String comentario;
 
     @ManyToOne
