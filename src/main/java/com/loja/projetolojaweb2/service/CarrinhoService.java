@@ -31,7 +31,7 @@ public class CarrinhoService implements CarrinhoInterface {
     @Override
     public Carrinho encontrarPorIdOuLancarExcecao(Long id) {
         return carrinhoRepository.findById(id)
-                .orElseThrow(()-> new ResponseStatusException(BAD_REQUEST,"endereço não encotrado"));
+                .orElseThrow(()-> new ResponseStatusException(BAD_REQUEST,"Carrinho nao encontrado"));
     }
 
     @Override
