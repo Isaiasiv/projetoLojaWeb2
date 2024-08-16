@@ -1,6 +1,5 @@
 package com.loja.projetolojaweb2.controller;
 
-import com.loja.projetolojaweb2.domain.Carrinho;
 import com.loja.projetolojaweb2.domain.Endereco;
 import com.loja.projetolojaweb2.domain.Pessoa;
 import com.loja.projetolojaweb2.dto.EnderecoToPessoaDto.EnderecoToPessoaPutRequest;
