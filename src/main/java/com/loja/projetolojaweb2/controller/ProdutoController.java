@@ -2,8 +2,7 @@ package com.loja.projetolojaweb2.controller;
 
 import com.loja.projetolojaweb2.domain.Pessoa;
 import com.loja.projetolojaweb2.domain.Produto;
-import com.loja.projetolojaweb2.dto.pessoaDto.PessoaPostRequest;
-import com.loja.projetolojaweb2.dto.pessoaDto.PessoaPutRequest;
+
 import com.loja.projetolojaweb2.dto.produtoDto.ProdutoPostRequest;
 import com.loja.projetolojaweb2.dto.produtoDto.ProdutoPutRequest;
 import com.loja.projetolojaweb2.service.ProdutoService;

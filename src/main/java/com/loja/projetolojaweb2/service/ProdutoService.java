@@ -20,7 +20,7 @@ import static org.springframework.http.HttpStatus.BAD_REQUEST;
 public class ProdutoService implements ProdutoServiceInterface {
 
 
-    private ProdutoRepository produtoRepository;
+    private final ProdutoRepository produtoRepository;
 
     @Override
     public List<Produto> findByNome(String nome) {

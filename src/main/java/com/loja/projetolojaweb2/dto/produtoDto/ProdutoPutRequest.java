@@ -5,7 +5,6 @@ import lombok.Data;
 @Data
 public class ProdutoPutRequest {
 
-    private int id;
     private int produtoID;
     private String nome;
     private String tipo;
