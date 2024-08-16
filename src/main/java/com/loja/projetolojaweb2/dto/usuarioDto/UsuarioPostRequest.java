@@ -1,6 +1,9 @@
 package com.loja.projetolojaweb2.dto.usuarioDto;
 
 import com.loja.projetolojaweb2.domain.Carrinho;
+import com.loja.projetolojaweb2.domain.Endereco;
+import com.loja.projetolojaweb2.dto.EnderecoDto.EnderecoPostRequest;
+import com.loja.projetolojaweb2.dto.carrinhoDto.CarrinhoPostRequest;
 import lombok.Data;
 
 import java.util.List;
@@ -17,5 +20,7 @@ public class UsuarioPostRequest {
     private String dataNascimento;
     private List<String> favoritos;
     private int tipoConta;
-    private Carrinho carrinho;
+    private CarrinhoPostRequest carrinho;
+    private List<EnderecoPostRequest> enderecos;
+
 }

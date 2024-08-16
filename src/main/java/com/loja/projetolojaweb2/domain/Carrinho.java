@@ -26,6 +26,6 @@ public class Carrinho {
     private long valorTotal;
     private String categoria;
 
-    @OneToOne(mappedBy = "carrinho",cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "carrinho")
     private Pessoa pessoa;
 }
