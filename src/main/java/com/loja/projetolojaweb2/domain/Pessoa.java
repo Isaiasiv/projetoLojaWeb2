@@ -5,11 +5,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.text.DateFormat;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
+
 @Entity
 @Table(name = "pessoa")
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -42,5 +42,22 @@ public class Pessoa {
 
     @Column(nullable = false, length = 2)
     private int tipoConta;
+
+    @OneToMany(mappedBy = "pessoa",fetch = FetchType.LAZY,targetEntity = Endereco.class)
+    private List<Endereco> enderecos;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "carrinhoId",referencedColumnName = "id")
+    private Carrinho carrinho;
+
+
+    public Pessoa(){
+
+    }
+
+    public void addEndereco(Endereco endereco) {
+        this.enderecos.add(endereco);
+        endereco.setPessoa(this);
+    }
 
 }

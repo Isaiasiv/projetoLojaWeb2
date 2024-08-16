@@ -11,6 +11,7 @@ import java.text.DateFormat;
 @Entity
 @Table(name = "funcionario")
 @NoArgsConstructor
+@AllArgsConstructor
 public class Funcionario extends Pessoa{
 
     private static final long serialVersionUID = 1L;
@@ -24,11 +25,4 @@ public class Funcionario extends Pessoa{
     @Column(name = "add_produto",nullable = true)
     private String addProduto;
 
-
-    public Funcionario(String login, String senha, Long cpf, String nome, String telefone, String email, String dataNascimento, int tipoConta, String vendas, int tipoVendendor, String addProduto) {
-        super(login, senha, cpf, nome, telefone, email, dataNascimento, tipoConta);
-        this.vendas = vendas;
-        this.tipoVendendor = tipoVendendor;
-        this.addProduto = addProduto;
-    }
 }

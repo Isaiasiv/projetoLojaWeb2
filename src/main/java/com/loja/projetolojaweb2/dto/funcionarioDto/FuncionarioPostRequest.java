@@ -1,7 +1,13 @@
 package com.loja.projetolojaweb2.dto.funcionarioDto;
 
+import com.loja.projetolojaweb2.domain.Carrinho;
+import com.loja.projetolojaweb2.domain.Endereco;
+import com.loja.projetolojaweb2.dto.EnderecoDto.EnderecoPostRequest;
+import com.loja.projetolojaweb2.dto.carrinhoDto.CarrinhoPostRequest;
 import jakarta.persistence.Column;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 public class FuncionarioPostRequest {
@@ -16,4 +22,6 @@ public class FuncionarioPostRequest {
     private String vendas;
     private int tipoVendendor;
     private String addProduto;
+    private List<EnderecoPostRequest> enderecos;
+    private CarrinhoPostRequest carrinho;
 }

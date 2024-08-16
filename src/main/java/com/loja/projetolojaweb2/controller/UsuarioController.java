@@ -6,6 +6,7 @@ import com.loja.projetolojaweb2.dto.pessoaDto.PessoaPostRequest;
 import com.loja.projetolojaweb2.dto.pessoaDto.PessoaPutRequest;
 import com.loja.projetolojaweb2.dto.usuarioDto.UsuarioPostRequest;
 import com.loja.projetolojaweb2.dto.usuarioDto.UsuarioPutRequest;
+import com.loja.projetolojaweb2.service.EnderecoService;
 import com.loja.projetolojaweb2.service.UsuarioService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -17,12 +18,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/usuarios")
+@RequestMapping("api/v1/usuarios")
 @Log4j2
 @RequiredArgsConstructor
 public class UsuarioController {
 
     private final UsuarioService usuarioService;
+    private final EnderecoService enderecoService;
 
     @GetMapping()
     public ResponseEntity<List<Usuario>> listAll() {
@@ -35,9 +37,8 @@ public class UsuarioController {
     }
 
     @PostMapping()
-    public ResponseEntity<Pessoa> save(@RequestBody UsuarioPostRequest usuarioPostRequest ) {
+    public ResponseEntity<Usuario> save(@RequestBody UsuarioPostRequest usuarioPostRequest ) {
         usuarioPostRequest.setTipoConta(1);
-        usuarioService.salvar(usuarioPostRequest);
         return new ResponseEntity<>(usuarioService.salvar(usuarioPostRequest), HttpStatus.CREATED);
     }
 
@@ -48,7 +49,7 @@ public class UsuarioController {
     }
 
     @PutMapping()
-    public ResponseEntity<Pessoa> replace(@RequestBody UsuarioPutRequest usuarioPutRequest) {
+    public ResponseEntity<Usuario> replace(@RequestBody UsuarioPutRequest usuarioPutRequest) {
         usuarioService.atualizar(usuarioPutRequest);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
