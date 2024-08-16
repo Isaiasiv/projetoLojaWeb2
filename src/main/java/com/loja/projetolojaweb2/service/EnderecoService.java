@@ -9,6 +9,7 @@ import com.loja.projetolojaweb2.repository.EnderecoRepository;
 import com.loja.projetolojaweb2.service.serviceInterface.EnderecoInterface;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -21,7 +22,8 @@ import static org.springframework.http.HttpStatus.BAD_REQUEST;
 @Service
 public class EnderecoService implements EnderecoInterface {
 
-    private final EnderecoRepository enderecoRepository;
+    @Autowired
+    EnderecoRepository enderecoRepository;
 
 
     @Override

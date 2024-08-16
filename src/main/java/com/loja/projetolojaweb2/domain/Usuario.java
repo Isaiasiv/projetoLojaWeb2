@@ -19,7 +19,11 @@ public class Usuario extends Pessoa {
 
 
     @Nullable
+    @ElementCollection
     private List<String> favoritos;
+
+    @OneToMany(mappedBy = "usuario",fetch = FetchType.LAZY,targetEntity = Pedido.class)
+   private List<Pedido> pedidos;
 
 
 
@@ -30,5 +34,10 @@ public class Usuario extends Pessoa {
 //        super(login, senha, cpf, nome, telefone, email, dataNascimento,tipoConta);
 //       this.favoritos = favoritos;
     //}
+
+    public void addPedido(Pedido pedido) {
+        this.pedidos.add(pedido);
+        pedido.setUsuario(this);
+    }
 
 }

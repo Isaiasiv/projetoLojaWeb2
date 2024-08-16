@@ -1,9 +1,12 @@
 package com.loja.projetolojaweb2.controller;
 
+import com.loja.projetolojaweb2.domain.Pedido;
 import com.loja.projetolojaweb2.domain.Pessoa;
 import com.loja.projetolojaweb2.domain.Usuario;
+import com.loja.projetolojaweb2.dto.peditoToUsuarioDto.PedidoToUsuarioDto;
 import com.loja.projetolojaweb2.dto.pessoaDto.PessoaPostRequest;
 import com.loja.projetolojaweb2.dto.pessoaDto.PessoaPutRequest;
+import com.loja.projetolojaweb2.dto.produtoToPedidoDto.ProdutoToPedidoDto;
 import com.loja.projetolojaweb2.dto.usuarioDto.UsuarioPostRequest;
 import com.loja.projetolojaweb2.dto.usuarioDto.UsuarioPutRequest;
 import com.loja.projetolojaweb2.service.EnderecoService;
@@ -52,6 +55,12 @@ public class UsuarioController {
     public ResponseEntity<Usuario> replace(@RequestBody UsuarioPutRequest usuarioPutRequest) {
         usuarioService.atualizar(usuarioPutRequest);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @PutMapping("/addPedido")
+    public ResponseEntity<Usuario> addPedidoToUsuario(@RequestBody PedidoToUsuarioDto pedidoToUsuarioDto) {
+        Usuario usuario = usuarioService.addPedidoToUsuario(pedidoToUsuarioDto);
+        return ResponseEntity.ok(usuario);
     }
 
 }

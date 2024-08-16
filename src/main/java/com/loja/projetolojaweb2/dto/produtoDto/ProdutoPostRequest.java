@@ -1,5 +1,6 @@
 package com.loja.projetolojaweb2.dto.produtoDto;
 
+import com.loja.projetolojaweb2.domain.Pedido;
 import lombok.Data;
 
 @Data
@@ -17,4 +18,5 @@ public class ProdutoPostRequest {
     private String descricao;
     private double valor;
     private int quantidade;
+    private Pedido pedidos;
 }

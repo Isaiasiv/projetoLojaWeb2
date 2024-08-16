@@ -1,5 +1,6 @@
 package com.loja.projetolojaweb2.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -60,4 +61,12 @@ public class Produto {
             joinColumns = @JoinColumn(name = "produto_id"),
             inverseJoinColumns = @JoinColumn(name = "carrinho_id"))
     private List<Carrinho> carrinhos;
+
+    @ManyToOne
+    @JoinColumn(name = "fk_produto_pedido")
+    @JsonIgnore
+    private Pedido pedidos;
+
+
+
 }

@@ -28,8 +28,7 @@ public class ProdutoController {
 
     @PostMapping( "/create")
     public ResponseEntity<Produto> save(@RequestBody ProdutoPostRequest produtoPostRequest) {
-        Produto savedProduto = produtoService.salvar(produtoPostRequest);
-        return new ResponseEntity<>(savedProduto, HttpStatus.CREATED);
+        return new ResponseEntity<>(produtoService.salvar(produtoPostRequest), HttpStatus.CREATED);
     }
 
     @GetMapping()
@@ -48,4 +47,6 @@ public class ProdutoController {
         produtoService.delete(produtoID);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+
 }
