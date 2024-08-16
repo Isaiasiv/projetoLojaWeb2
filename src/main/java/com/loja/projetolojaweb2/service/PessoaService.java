@@ -12,7 +12,12 @@ import com.loja.projetolojaweb2.repository.CarrinhoRepository;
 import com.loja.projetolojaweb2.repository.EnderecoRepository;
 import com.loja.projetolojaweb2.repository.PessoaRepository;
 import com.loja.projetolojaweb2.service.serviceInterface.PessoaServiceInterface;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.Response;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -20,6 +25,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
+import static org.springframework.http.HttpStatus.UNAUTHORIZED;
 
 @Service
 @RequiredArgsConstructor
@@ -75,24 +81,31 @@ public class PessoaService implements PessoaServiceInterface {
             System.out.println("DEU CERTO!!!!");
             return pessoa;
         }
-    return null;
+    throw new ResponseStatusException(UNAUTHORIZED,"Login ou senha incorretos");
     }
 
     @Override
-    public Pessoa fazerLogout() {
-        return null;
+    public void fazerLogout(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if(session != null) {
+            session.invalidate();
+        }
     }
 
     @Override
-    public Pessoa recuperarSenha() {
-        return null;
+    public Pessoa recuperarSenha(PessoaPutRequest pessoaPutRequest) {
+        Pessoa pessoaSalva = encontrarPorIdOuLancarExcecao(pessoaPutRequest.getLogin());
+
+        pessoaSalva.setSenha(pessoaPutRequest.getSenha());
+        pessoaRepository.save(pessoaSalva);
+        return pessoaSalva;
     }
 
     @Override
     public Pessoa configurarConta() {
         return null;
     }
-    @Override
+
     public List<Pessoa> list(){
     return null;
     }
@@ -101,6 +114,7 @@ public class PessoaService implements PessoaServiceInterface {
       return  pessoaRepository.findAll();
     }
 
+    @Override
     public Endereco addEnderecoToPessoa(EnderecoToPessoaPutRequest enderecoToPessoaPutRequest){
         Optional<Pessoa> pessoaOptional = pessoaRepository.findById(enderecoToPessoaPutRequest.getLoginPessoa());
        Optional<Endereco> enderecoOptional = enderecoRepository.findById(enderecoToPessoaPutRequest.getEnderecoId());
@@ -115,4 +129,13 @@ public class PessoaService implements PessoaServiceInterface {
         throw new RuntimeException("Pessoa ou endereço não encontrado");
 
     }
+
+    @Override
+    public void verificarLoginOuLancarExcecao(HttpServletRequest request){
+        HttpSession session = request.getSession(false);
+        if(session == null || session.getAttribute("Usuario logado") == null) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED ,"Usuário não está logado :(");
+        }
+    }
+
 }

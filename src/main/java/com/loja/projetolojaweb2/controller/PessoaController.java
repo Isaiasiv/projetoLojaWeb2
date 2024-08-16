@@ -4,14 +4,18 @@ import com.loja.projetolojaweb2.domain.Carrinho;
 import com.loja.projetolojaweb2.domain.Endereco;
 import com.loja.projetolojaweb2.domain.Pessoa;
 import com.loja.projetolojaweb2.dto.EnderecoToPessoaDto.EnderecoToPessoaPutRequest;
+import com.loja.projetolojaweb2.dto.loginRequest.LoginRequest;
 import com.loja.projetolojaweb2.dto.pessoaDto.PessoaPostRequest;
 import com.loja.projetolojaweb2.dto.pessoaDto.PessoaPutRequest;
 import com.loja.projetolojaweb2.service.PessoaService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -58,18 +62,57 @@ public class PessoaController {
     return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-//    @GetMapping(path = "/login/{login}/{senha}")
-//    public ResponseEntity<Pessoa> login(@PathVariable String login,
-//                                        @PathVariable String senha) {
-//        try{
-//            pessoaService.fazerLogin(login,senha);
-//            return new ResponseEntity<>(HttpStatus.OK);
-//        }catch (Exception ex){
-//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login ou senhas incorretos");
-//        }
-//
-//
-//    }
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request) {
+        try {
+            pessoaService.fazerLogout(request);
+            return "Logout realizado com sucesso!";
+        }catch (Exception e) {
+            return "Erro ao realizar o logout: " + e.getMessage();
+        }
+    }
+
+    @PostMapping("/login")
+    public String login(@RequestBody LoginRequest loginRequest, HttpServletRequest request) {
+
+        try {
+            Pessoa pessoa = pessoaService.fazerLogin(loginRequest.getLoginPessoa(),loginRequest.getSenha());
+            if(pessoa != null) {
+                HttpSession session = request.getSession(true);
+                session.setAttribute("Usuario logado", pessoa);
+                return "Login Realizado com sucesso :)";
+            }else{
+                return "Credenciais invalidas :(";
+            }
+        }catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Login ou senha incorretos :(");
+        }
+
+    }
+
+    @PutMapping("/recuperarSenha")
+    public ResponseEntity<String> recuperarSenha(@RequestBody PessoaPutRequest pessoaPutRequest,
+                                                 HttpServletRequest request) {
+           //HttpSession session = request.getSession(false);
+           //if(session == null || session.getAttribute("Usuario logado") == null) {
+              //  return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Usuário não está logado :(");
+            //}
+
+            try {
+                //Verifica se usuario esta logado
+                pessoaService.verificarLoginOuLancarExcecao(request);
+
+
+                pessoaService.recuperarSenha(pessoaPutRequest);
+                return ResponseEntity.ok("Senha atualizada com sucesso");
+
+            }catch (ResponseStatusException e) {
+                return ResponseEntity.status(e.getStatusCode().value()).body(e.getReason());
+            }catch (Exception e) {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao atualizar a senha" + e.getMessage());
+
+            }
+    }
 
 
 }

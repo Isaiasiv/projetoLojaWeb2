@@ -3,7 +3,6 @@ package com.loja.projetolojaweb2.domain;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.management.ConstructorParameters;
 import java.text.DateFormat;
@@ -15,7 +14,6 @@ import java.util.List;
 @Table(name = "usuario")
 @NoArgsConstructor
 @AllArgsConstructor
-@CrossOrigin(origins = "4200")
 public class Usuario extends Pessoa {
 
 

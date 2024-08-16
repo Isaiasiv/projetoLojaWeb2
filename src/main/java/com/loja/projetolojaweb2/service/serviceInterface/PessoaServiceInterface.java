@@ -9,8 +9,6 @@ import jakarta.servlet.http.HttpServletRequest;
 
 import java.util.List;
 
-import java.util.List;
-
 public interface PessoaServiceInterface {
 
    List<Pessoa> encontrarTodos();
@@ -38,5 +36,4 @@ public interface PessoaServiceInterface {
 
 
 
-   List<Pessoa> list();
 }
