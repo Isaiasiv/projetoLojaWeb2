@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class ProdutoPostRequest {
 
-    private Long produtoID; // Renomeado para corresponder ao campo na entidade Produto
+    private Long produtoID;
     private String nome;
     private String tipo;
     private String tamanho;

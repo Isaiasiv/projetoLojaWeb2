@@ -1,6 +1,5 @@
 package com.loja.projetolojaweb2.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -28,6 +27,5 @@ public class Carrinho {
     private String categoria;
 
     @OneToOne(mappedBy = "carrinho")
-    @JsonIgnore
     private Pessoa pessoa;
 }
