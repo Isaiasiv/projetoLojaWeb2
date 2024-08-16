@@ -4,8 +4,8 @@ import com.loja.projetolojaweb2.domain.Produto;
 import com.loja.projetolojaweb2.dto.produtoDto.ProdutoPostRequest;
 import com.loja.projetolojaweb2.dto.produtoDto.ProdutoPutRequest;
 import com.loja.projetolojaweb2.mapper.ProdutoMapper;
-import com.loja.projetolojaweb2.repository.ProdutoRepository;
-import com.loja.projetolojaweb2.service.serviceInterface.ProdutoServicerInterface;
+import com.loja.projetolojaweb2.Repository.ProdutoRepository;
+import com.loja.projetolojaweb2.service.serviceInterface.ProdutoServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -15,7 +15,7 @@ import java.util.List;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
 @Service
-public class ProdutoService implements ProdutoServicerInterface {
+public class ProdutoService implements ProdutoServiceInterface {
     @Autowired
     private ProdutoRepository produtoRepository;
 
