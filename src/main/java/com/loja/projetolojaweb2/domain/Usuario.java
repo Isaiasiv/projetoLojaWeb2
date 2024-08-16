@@ -1,10 +1,7 @@
 package com.loja.projetolojaweb2.domain;
 
 import jakarta.annotation.Nullable;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 import javax.management.ConstructorParameters;
@@ -19,8 +16,12 @@ import java.util.List;
 @AllArgsConstructor
 public class Usuario extends Pessoa {
 
+
+
     @Nullable
     private List<String> favoritos;
+
+
 
     private static final long serialVersionUID = 1L;
 

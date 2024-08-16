@@ -11,7 +11,6 @@ import java.util.List;
 @Data
 public class CarrinhoPostRequest {
 
-    private Long id;
     private List<Produto> produtos;
     private long valorTotal;
     private String categoria;

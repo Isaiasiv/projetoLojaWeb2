@@ -2,6 +2,8 @@ package com.loja.projetolojaweb2.dto.pessoaDto;
 
 import com.loja.projetolojaweb2.domain.Carrinho;
 import com.loja.projetolojaweb2.domain.Endereco;
+import com.loja.projetolojaweb2.dto.EnderecoDto.EnderecoPutRequest;
+import com.loja.projetolojaweb2.dto.carrinhoDto.CarrinhoPutRequest;
 import lombok.Data;
 
 import java.text.DateFormat;
@@ -18,7 +20,7 @@ public class PessoaPutRequest {
     private String email;
     private String dataNascimento;
     private int tipoConta;
-    private List<Endereco> enderecos;
-    private Carrinho carrinho;
+    private List<EnderecoPutRequest> enderecos;
+    private CarrinhoPutRequest carrinho;
 
 }

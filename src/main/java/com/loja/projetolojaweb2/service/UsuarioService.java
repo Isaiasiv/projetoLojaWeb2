@@ -1,9 +1,11 @@
 package com.loja.projetolojaweb2.service;
 
+import com.loja.projetolojaweb2.domain.Carrinho;
 import com.loja.projetolojaweb2.domain.Pessoa;
 import com.loja.projetolojaweb2.domain.Usuario;
 import com.loja.projetolojaweb2.dto.usuarioDto.UsuarioPostRequest;
 import com.loja.projetolojaweb2.dto.usuarioDto.UsuarioPutRequest;
+import com.loja.projetolojaweb2.mapper.CarrinhoMapper;
 import com.loja.projetolojaweb2.mapper.PessoaMapper;
 import com.loja.projetolojaweb2.mapper.UsuarioMapper;
 import com.loja.projetolojaweb2.repository.UsuarioRepository;
@@ -39,13 +41,26 @@ public class UsuarioService implements UsuarioInterface {
     public void atualizar(UsuarioPutRequest usuarioPutRequest) {
         Usuario usuarioSalvo = encontrarPorIdOuLancarExcecao(usuarioPutRequest.getLogin());
         Usuario usuario = UsuarioMapper.INSTANCE.toUsuario(usuarioPutRequest);
-        usuario.setLogin(usuarioSalvo.getLogin());
+
+
+        Carrinho carrinhoExistente = usuarioSalvo.getCarrinho();
+        if(carrinhoExistente != null) {
+            usuario.setCarrinho(carrinhoExistente);
+        }
+
+        usuario.setLogin(usuarioPutRequest.getLogin());
         usuarioRepository.save(usuario);
     }
 
     @Override
     public Usuario salvar(UsuarioPostRequest usuarioPostRequest) {
-        return usuarioRepository.save(UsuarioMapper.INSTANCE.toUsuario(usuarioPostRequest));
+        Carrinho carrinho = new Carrinho();
+        Usuario usuario = UsuarioMapper.INSTANCE.toUsuario(usuarioPostRequest);
+
+        carrinho.setPessoa(usuario);
+        usuario.setCarrinho(carrinho);
+
+        return usuarioRepository.save(usuario);
     }
 
     @Override

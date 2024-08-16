@@ -9,6 +9,7 @@ import java.util.List;
 
 @Data
 @AllArgsConstructor
+
 @Entity
 @Table(name = "pessoa")
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -42,14 +43,21 @@ public class Pessoa {
     @Column(nullable = false, length = 2)
     private int tipoConta;
 
-    @OneToMany(mappedBy = "pessoa",cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(mappedBy = "pessoa",fetch = FetchType.LAZY,targetEntity = Endereco.class)
     private List<Endereco> enderecos;
 
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "carrinhoId",referencedColumnName = "id")
     private Carrinho carrinho;
 
+
     public Pessoa(){
-        this.carrinho = new Carrinho();
+
+    }
+
+    public void addEndereco(Endereco endereco) {
+        this.enderecos.add(endereco);
+        endereco.setPessoa(this);
     }
 
 }
