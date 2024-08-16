@@ -34,4 +34,8 @@ public class ProdutoService implements ProdutoServiceInterface {
     public Produto encontrarPorIdOuLancarExcecao(String produtoID) {
         return null;
     }
+
+    public List<Produto> listAll() {
+        return null;
+    }
 }
