@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @RestController
-@RequestMapping("produtos")
+@RequestMapping("/produtos")
 @Log4j2
 @RequiredArgsConstructor
 public class ProdutoController {
-
+    @Autowired
     private final ProdutoService produtoService;
 
     @GetMapping("/produto")
@@ -27,7 +27,7 @@ public class ProdutoController {
         return "teste";
     }
 
-    @PostMapping()
+    @PostMapping( "/create")
     public ResponseEntity<Produto> save(@RequestBody ProdutoPostRequest produtoPostRequest) {
         Produto savedProduto = produtoService.salvar(produtoPostRequest);
         return new ResponseEntity<>(savedProduto, HttpStatus.CREATED);

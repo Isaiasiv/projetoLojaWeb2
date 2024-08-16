@@ -1,10 +1,10 @@
 package com.loja.projetolojaweb2.service;
 
 import com.loja.projetolojaweb2.domain.Produto;
-import com.loja.projetolojaweb2.Repository.ProdutoRepository;
 import com.loja.projetolojaweb2.dto.produtoDto.ProdutoPostRequest;
 import com.loja.projetolojaweb2.dto.produtoDto.ProdutoPutRequest;
 import com.loja.projetolojaweb2.mapper.ProdutoMapper;
+import com.loja.projetolojaweb2.repository.ProdutoRepository;
 import com.loja.projetolojaweb2.service.serviceInterface.ProdutoServiceInterface;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
