@@ -8,6 +8,9 @@ import com.loja.projetolojaweb2.dto.pessoaDto.PessoaPostRequest;
 import com.loja.projetolojaweb2.dto.pessoaDto.PessoaPutRequest;
 import com.loja.projetolojaweb2.service.FuncionarioService;
 import com.loja.projetolojaweb2.service.PessoaService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
@@ -24,11 +27,23 @@ public class FuncionarioController {
 
     private final FuncionarioService funcionarioService;
 
+    @Operation(summary = "Busca funcionário",description = "Busca um funcionário atraves do nome " +
+            "de usuario(login),",tags = "Funcionário")
+    /*@ApiResponses(value = {
+            @ApiResponse(responseCode = "200",description = "funcionário excluido com sucesso"),
+            @ApiResponse(responseCode = "400",description = "Erro ao excluir funcionário")
+    })*/
+
     @GetMapping(path="/{login}")
     public Pessoa findById(@PathVariable String login) {
         return funcionarioService.encontrarPorIdOuLancarExcecao(login);
     }
 
+    @Operation(summary = "Criar funcionário",description = "Cria uma conta de funcionário",tags = "Funcionário")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200",description = "funcionário excluido com sucesso"),
+            @ApiResponse(responseCode = "400",description = "Erro ao excluir funcionário")
+    })
     @PostMapping()
     public ResponseEntity<Funcionario> save(@RequestBody FuncionarioPostRequest funcionarioPostRequest) {
         funcionarioPostRequest.setTipoConta(2);
@@ -40,12 +55,24 @@ public class FuncionarioController {
         return ResponseEntity.ok(funcionarioService.encontrarTodos());
     }
 
+    @Operation(summary = "Edita funcionário",description = "Atualiza dados de  funcionário" +
+            "atraves do nome de usuario(login)",tags = "Funcionário")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200",description = "funcionário excluido com sucesso"),
+            @ApiResponse(responseCode = "400",description = "Erro ao excluir funcionário")
+    })
     @PutMapping()
     public ResponseEntity<Funcionario> replace(@RequestBody FuncionarioPutRequest funcionarioPutRequest) {
         funcionarioService.atualizar(funcionarioPutRequest);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @Operation(summary = "Excluir funcionário",description = "exclui conta de um funcionário atraves " +
+            "do nome de usuario(login)",tags = "Funcionário")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200",description = "Usuário excluido com sucesso"),
+            @ApiResponse(responseCode = "400",description = "Erro ao excluir Usuário")
+    })
     @DeleteMapping(path = "/{login}")
     public ResponseEntity<Funcionario> delete(@PathVariable String login) {
         funcionarioService.delete(login);

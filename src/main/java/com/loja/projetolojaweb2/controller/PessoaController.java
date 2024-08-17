@@ -8,6 +8,9 @@ import com.loja.projetolojaweb2.dto.loginRequest.LoginRequest;
 import com.loja.projetolojaweb2.dto.pessoaDto.PessoaPostRequest;
 import com.loja.projetolojaweb2.dto.pessoaDto.PessoaPutRequest;
 import com.loja.projetolojaweb2.service.PessoaService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -48,7 +51,11 @@ public class PessoaController {
         pessoaService.atualizar(pessoaPutRequest);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-
+    @Operation(summary = "Endereço",description = "Atualiza endereços do usuario",tags = "Endereço")
+    /*@ApiResponses(value = {
+            @ApiResponse(responseCode = "200",description = "Usuário excluido com sucesso"),
+            @ApiResponse(responseCode = "400",description = "Erro ao excluir Usuário")
+   })*/
     @PutMapping("/addEndereco")
     public ResponseEntity<Endereco> addEnderecoToPessoa(@RequestBody EnderecoToPessoaPutRequest enderecoToPessoaPutRequest) {
         Endereco endereco = pessoaService.addEnderecoToPessoa(enderecoToPessoaPutRequest);
@@ -62,6 +69,11 @@ public class PessoaController {
     return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @Operation(summary = "Sair da conta",description = "recupera a senha usando o nome de usuario(login)",tags = "Conta")
+    /*@ApiResponses(value = {
+            @ApiResponse(responseCode = "200",description = "Usuário excluido com sucesso"),
+            @ApiResponse(responseCode = "400",description = "Erro ao excluir Usuário")
+   })*/
     @GetMapping("/logout")
     public String logout(HttpServletRequest request) {
         try {
@@ -71,7 +83,11 @@ public class PessoaController {
             return "Erro ao realizar o logout: " + e.getMessage();
         }
     }
-
+    @Operation(summary = "Tela de login",description = "tela de login para Clientes e funcionarios usando o nome de usuario(login)",tags = "Conta")
+    /*@ApiResponses(value = {
+            @ApiResponse(responseCode = "200",description = "Usuário excluido com sucesso"),
+            @ApiResponse(responseCode = "400",description = "Erro ao excluir Usuário")
+   })*/
     @PostMapping("/login")
     public String login(@RequestBody LoginRequest loginRequest, HttpServletRequest request) {
 
@@ -90,6 +106,11 @@ public class PessoaController {
 
     }
 
+    @Operation(summary = "recuperar senha",description = "recupera a senha usando o nome de usuario(login)",tags = "Conta")
+    /*@ApiResponses(value = {
+            @ApiResponse(responseCode = "200",description = "Usuário excluido com sucesso"),
+            @ApiResponse(responseCode = "400",description = "Erro ao excluir Usuário")
+   })*/
     @PutMapping("/recuperarSenha")
     public ResponseEntity<String> recuperarSenha(@RequestBody PessoaPutRequest pessoaPutRequest,
                                                  HttpServletRequest request) {

@@ -17,6 +17,7 @@ public class AvaliacaoController {
     @Autowired
     private AvaliacaoService avaliacaoService;
 
+
     @GetMapping("/estrela/{estrela}")
     public List<Avaliacao> avaliacao(@PathVariable("estrela") int estrela) {
         return avaliacaoService.findByAvaliacao(estrela);
