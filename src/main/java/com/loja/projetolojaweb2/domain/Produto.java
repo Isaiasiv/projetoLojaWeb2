@@ -1,12 +1,15 @@
 package com.loja.projetolojaweb2.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Cascade;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import java.util.List;
@@ -52,15 +55,14 @@ public class Produto {
     private String descricao;
 
     @Column(nullable = false)
-    private double valor;
+    private BigDecimal valor;
 
     @Column(nullable = false)
     private int quantidade;
-    @ManyToMany
-    @JoinTable(name = "produto_carrinho",
-            joinColumns = @JoinColumn(name = "produto_id"),
-            inverseJoinColumns = @JoinColumn(name = "carrinho_id"))
-    private List<Carrinho> carrinhos;
+
+    @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<CarrinhoProduto> carrinhos;
 
     @ManyToOne
     @JoinColumn(name = "fk_produto_pedido")

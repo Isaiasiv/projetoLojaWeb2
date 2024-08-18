@@ -8,10 +8,12 @@ import jakarta.persistence.OneToOne;
 import lombok.Data;
 
 import java.util.List;
+import java.util.Map;
+
 @Data
 public class CarrinhoPostRequest {
 
-    private List<Produto> produtos;
+    private Map<Produto,Integer> produtos;
     private long valorTotal;
     private String categoria;
     private Pessoa pessoa;

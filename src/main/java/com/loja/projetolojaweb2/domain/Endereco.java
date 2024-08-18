@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 @Data
 @AllArgsConstructor
@@ -16,19 +17,15 @@ public class Endereco {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+
     private String cep;
-
-    @Column(nullable = false)
+    @NonNull
     private String rua;
-
-    @Column(nullable = false)
+    @NonNull
     private String setor;
-
-    @Column(nullable = false)
+    @NonNull
     private String uf;
-
-    @Column(nullable = false)
+    @NonNull
     private String cidade;
 
     private String complemento;

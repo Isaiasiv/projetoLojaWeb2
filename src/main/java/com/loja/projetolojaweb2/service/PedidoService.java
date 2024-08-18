@@ -1,5 +1,8 @@
 package com.loja.projetolojaweb2.service;
 
+import com.loja.projetolojaweb2.Exceptions.PedidoNotFoundException;
+import com.loja.projetolojaweb2.Exceptions.ProdutoForaDeEstoqueException;
+import com.loja.projetolojaweb2.Exceptions.ProdutoNotFoundException;
 import com.loja.projetolojaweb2.domain.Endereco;
 import com.loja.projetolojaweb2.domain.Pedido;
 import com.loja.projetolojaweb2.domain.Produto;
@@ -33,19 +36,36 @@ public class PedidoService implements PedidoServiceInterface {
     PedidoRepository pedidoRepository;
 
     public Pedido addProdutoToPedido(ProdutoToPedidoDto produtoToPedidoDto) {
-        Optional<Produto> produtoOptional = produtoRepository.findById(produtoToPedidoDto.getIdProduto());
-        Optional<Pedido> pedidoOptional = pedidoRepository.findById(produtoToPedidoDto.getIdPedido());
+       // Optional<Produto> produtoOptional = produtoRepository.findById(produtoToPedidoDto.getIdProduto());
+       // Optional<Pedido> pedidoOptional = pedidoRepository.findById(produtoToPedidoDto.getIdPedido());
 
-        if (produtoOptional.isPresent() && pedidoOptional.isPresent()) {
-            Produto produto = produtoOptional.get();
-            Pedido pedido = pedidoOptional.get();
-            pedido.addProduto(produto);
-            return pedidoRepository.save(pedido);
+        Produto produtoTeste = produtoRepository.findById(produtoToPedidoDto.getIdProduto())
+                .orElseThrow(() -> new ProdutoNotFoundException("Produto não encontrado"));
+
+        Pedido pedidoTeste = pedidoRepository.findById(produtoToPedidoDto.getIdPedido())
+                .orElseThrow(() -> new PedidoNotFoundException("Pedido não encontrado"));
+
+       // if (produtoOptional.isPresent() && pedidoOptional.isPresent()) {
+            //Produto produto = produtoOptional.get();
+            //Pedido pedido = pedidoOptional.get();
+
+            if(produtoTeste.getQuantidade() > 0) {
+                produtoTeste.setQuantidade(produtoTeste.getQuantidade() - 1);
+                produtoRepository.save(produtoTeste);
+
+                pedidoTeste.addProduto(produtoTeste);
+
+                return pedidoRepository.save(pedidoTeste);
+
+            }else {
+                throw new ProdutoForaDeEstoqueException("Produto fora de estoque");
+            }
+
         }
 
-        throw new RuntimeException("Pedido ou Produto não encontrado");
+        //throw new Produ("Pedido ou Produto não encontrado");
 
-    }
+    //}
 
     @Override
     public List<Pedido> encontrarTodos() {
@@ -55,7 +75,7 @@ public class PedidoService implements PedidoServiceInterface {
     @Override
     public Pedido encontrarPorIdOuLancarExcecao(Long id) {
         return pedidoRepository.findById(id)
-                .orElseThrow(()-> new ResponseStatusException(BAD_REQUEST,"Pedido não encontrado"));
+                .orElseThrow(()-> new PedidoNotFoundException("Pedido nao encontrado"));
     }
 
     @Override
