@@ -20,10 +20,10 @@ public class Usuario extends Pessoa {
 
     @Nullable
     @ElementCollection
-    private List<String> favoritos;
+    private List<String> favoritos = new ArrayList<>();
 
     @OneToMany(mappedBy = "usuario",fetch = FetchType.LAZY,targetEntity = Pedido.class)
-   private List<Pedido> pedidos;
+    private List<Pedido> pedidos = new ArrayList<>();
 
 
 

@@ -40,10 +40,6 @@ public class FuncionarioController {
     }
 
     @Operation(summary = "Criar funcionário",description = "Cria uma conta de funcionário",tags = "Funcionário")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200",description = "funcionário excluido com sucesso"),
-            @ApiResponse(responseCode = "400",description = "Erro ao excluir funcionário")
-    })
     @PostMapping()
     public ResponseEntity<Funcionario> save(@RequestBody FuncionarioPostRequest funcionarioPostRequest) {
         funcionarioPostRequest.setTipoConta(2);
@@ -57,10 +53,6 @@ public class FuncionarioController {
 
     @Operation(summary = "Edita funcionário",description = "Atualiza dados de  funcionário" +
             "atraves do nome de usuario(login)",tags = "Funcionário")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200",description = "funcionário excluido com sucesso"),
-            @ApiResponse(responseCode = "400",description = "Erro ao excluir funcionário")
-    })
     @PutMapping()
     public ResponseEntity<Funcionario> replace(@RequestBody FuncionarioPutRequest funcionarioPutRequest) {
         funcionarioService.atualizar(funcionarioPutRequest);
@@ -69,10 +61,6 @@ public class FuncionarioController {
 
     @Operation(summary = "Excluir funcionário",description = "exclui conta de um funcionário atraves " +
             "do nome de usuario(login)",tags = "Funcionário")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200",description = "Usuário excluido com sucesso"),
-            @ApiResponse(responseCode = "400",description = "Erro ao excluir Usuário")
-    })
     @DeleteMapping(path = "/{login}")
     public ResponseEntity<Funcionario> delete(@PathVariable String login) {
         funcionarioService.delete(login);
