@@ -7,12 +7,13 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
 import lombok.Data;
 
+import java.math.BigDecimal;
 import java.util.List;
 @Data
 public class CarrinhoPostRequest {
 
-    private List<Produto> produtos;
-    private long valorTotal;
+
+    private BigDecimal valorTotal;
     private String categoria;
     private Pessoa pessoa;
 }

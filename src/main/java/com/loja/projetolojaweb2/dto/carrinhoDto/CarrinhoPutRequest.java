@@ -4,13 +4,13 @@ import com.loja.projetolojaweb2.domain.Pessoa;
 import com.loja.projetolojaweb2.domain.Produto;
 import lombok.Data;
 
+import java.math.BigDecimal;
 import java.util.List;
 @Data
 public class CarrinhoPutRequest {
 
     private Long id;
-    private List<Produto> produtos;
-    private long valorTotal;
+    private BigDecimal valorTotal;
     private String categoria;
     private Pessoa pessoa;
 }

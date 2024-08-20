@@ -71,6 +71,7 @@ public class PedidoController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @Operation(summary = "deletar", description = " deleta um pedido por id",tags = "Pedido")
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<Pedido> delete(@PathVariable Long id) {
         pedidoService.delete(id);
@@ -78,13 +79,13 @@ public class PedidoController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @Operation(summary = "",description = "busca todos pedidos realizados por um usuario",tags = "Pedido")
+    @Operation(summary = "adicionar produto",description = "adiciona um produto ao pedido",tags = "Pedido")
     /*@ApiResponses(value = {
             @ApiResponse(responseCode = "200",description = "funcionário excluido com sucesso"),
             @ApiResponse(responseCode = "400",description = "Erro ao excluir funcionário")
     })*/
     @PutMapping("/addProduto")
-    public ResponseEntity<Pedido> addEnderecoToPessoa(@RequestBody ProdutoToPedidoDto produtoToPedidoDto) {
+    public ResponseEntity<Pedido> addProdutoToPedido(@RequestBody ProdutoToPedidoDto produtoToPedidoDto) {
         Pedido pedido = pedidoService.addProdutoToPedido(produtoToPedidoDto);
         return ResponseEntity.ok(pedido);
     }

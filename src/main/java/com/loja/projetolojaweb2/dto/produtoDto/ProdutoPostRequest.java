@@ -3,6 +3,8 @@ package com.loja.projetolojaweb2.dto.produtoDto;
 import com.loja.projetolojaweb2.domain.Pedido;
 import lombok.Data;
 
+import java.math.BigDecimal;
+
 @Data
 public class ProdutoPostRequest {
 
@@ -16,7 +18,7 @@ public class ProdutoPostRequest {
     private String categoria;
     private String subcategoria;
     private String descricao;
-    private double valor;
+    private BigDecimal valor;
     private int quantidade;
     private Pedido pedidos;
 }

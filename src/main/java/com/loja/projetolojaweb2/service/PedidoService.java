@@ -40,6 +40,7 @@ public class PedidoService implements PedidoServiceInterface {
             Produto produto = produtoOptional.get();
             Pedido pedido = pedidoOptional.get();
             pedido.addProduto(produto);
+            produtoOptional.get().setQuantidade(produto.getQuantidade() - 1);
             return pedidoRepository.save(pedido);
         }
 

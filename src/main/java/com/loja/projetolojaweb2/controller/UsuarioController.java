@@ -36,7 +36,7 @@ public class UsuarioController {
     private final UsuarioService usuarioService;
     private final UsuarioModelAssembler assembler;
 
-
+    @Operation(summary = "lista usuário", description = "lista todos os usuários cadastrados",tags = "Usuário")
     @GetMapping()
     public ResponseEntity<CollectionModel<EntityModel<Usuario>>> listAll() {
         List<EntityModel<Usuario>> usuarios = usuarioService.encontrarTodos().stream()
@@ -50,10 +50,10 @@ public class UsuarioController {
 
 
     @Operation(summary = "Busca Usuário", description = "Busca um Usuário através do nome de usuário (login)", tags = "Usuário")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Usuário encontrado com sucesso"),
-            @ApiResponse(responseCode = "404", description = "Usuário não encontrado")
-    })
+    //@ApiResponses(value = {
+           // @ApiResponse(responseCode = "200", description = "Usuário encontrado com sucesso"),
+           // @ApiResponse(responseCode = "404", description = "Usuário não encontrado")
+   // })
     @GetMapping(path="/{login}")
     public ResponseEntity<EntityModel<Usuario>> findById(@PathVariable String login) {
         Usuario usuario = usuarioService.encontrarPorIdOuLancarExcecao(login);

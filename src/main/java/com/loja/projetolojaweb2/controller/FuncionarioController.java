@@ -46,6 +46,7 @@ public class FuncionarioController {
         return new ResponseEntity<>(funcionarioService.salvar(funcionarioPostRequest), HttpStatus.CREATED);
     }
 
+    @Operation(summary = "lista funcionário", description = "Lista todos os funcionários cadastrados",tags = "Funcionário")
     @GetMapping()
     public ResponseEntity<List<Funcionario>> list() {
         return ResponseEntity.ok(funcionarioService.encontrarTodos());

@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Cascade;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import java.util.List;
@@ -52,15 +54,13 @@ public class Produto {
     private String descricao;
 
     @Column(nullable = false)
-    private double valor;
+    private BigDecimal valor;
 
     @Column(nullable = false)
     private int quantidade;
-    @ManyToMany
-    @JoinTable(name = "produto_carrinho",
-            joinColumns = @JoinColumn(name = "produto_id"),
-            inverseJoinColumns = @JoinColumn(name = "carrinho_id"))
-    private List<Carrinho> carrinhos;
+
+    @OneToMany(mappedBy = "produto",cascade = CascadeType.ALL)
+    private List<ItemCarrinho> itemCarrinhoProduto;
 
     @ManyToOne
     @JoinColumn(name = "fk_produto_pedido")

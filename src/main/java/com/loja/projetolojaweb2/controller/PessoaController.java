@@ -31,21 +31,26 @@ public class PessoaController {
 
     private final PessoaService pessoaService;
 
+    @Operation(summary = "find by id", description = " encontra uma pessoa por id",tags = "pessoa")
     @GetMapping(path="/{login}")
     public Pessoa findById(@PathVariable String login) {
         return pessoaService.encontrarPorIdOuLancarExcecao(login);
     }
 
+    @Operation(summary = "salvar", description = " salva uma pessoa",tags = "pessoa")
     @PostMapping()
     public ResponseEntity<Pessoa> save(@RequestBody PessoaPostRequest pessoaPostRequest) {
     return new ResponseEntity<>(pessoaService.salvar(pessoaPostRequest), HttpStatus.CREATED);
     }
 
+    @Operation(summary = "lista", description = "mostra uma lista de pessoas",tags = "pessoa")
     @GetMapping()
     public ResponseEntity<List<Pessoa>> list() {
         return ResponseEntity.ok(pessoaService.listAll());
     }
 
+
+    @Operation(summary = "replace", description = " atualiza uma pessoa",tags = "pessoa")
     @PutMapping()
     public ResponseEntity<Pessoa> replace(@RequestBody PessoaPutRequest pessoaPutRequest) {
         pessoaService.atualizar(pessoaPutRequest);
@@ -61,7 +66,7 @@ public class PessoaController {
         Endereco endereco = pessoaService.addEnderecoToPessoa(enderecoToPessoaPutRequest);
         return ResponseEntity.ok(endereco);
     }
-
+    @Operation(summary = "delete", description = " deleta uma pessoa",tags = "pessoa")
     @DeleteMapping(path = "/{login}")
     public ResponseEntity<Pessoa> delete(@PathVariable String login) {
     pessoaService.delete(login);
