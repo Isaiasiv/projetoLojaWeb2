@@ -62,6 +62,9 @@ public class Produto {
     @OneToMany(mappedBy = "produto",cascade = CascadeType.ALL)
     private List<ItemCarrinho> itemCarrinhoProduto;
 
+    @OneToMany(mappedBy = "produto",cascade = CascadeType.ALL)
+    private List<ItemPedido> itemPedidoProduto;
+
     @ManyToOne
     @JoinColumn(name = "fk_produto_pedido")
     @JsonIgnore

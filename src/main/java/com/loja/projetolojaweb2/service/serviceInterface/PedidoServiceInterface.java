@@ -7,12 +7,14 @@ import com.loja.projetolojaweb2.dto.EnderecoDto.EnderecoPutRequest;
 import com.loja.projetolojaweb2.dto.pedidoDto.PedidoPostRequest;
 import com.loja.projetolojaweb2.dto.pedidoDto.PedidoPutRequest;
 import com.loja.projetolojaweb2.dto.produtoToPedidoDto.ProdutoToPedidoDto;
+import jakarta.servlet.http.HttpServletRequest;
 
 import java.util.List;
 
 public interface PedidoServiceInterface {
 
-    Pedido addProdutoToPedido(ProdutoToPedidoDto produtoToPedidoDto);
+    //Pedido addProdutoToPedido(ProdutoToPedidoDto produtoToPedidoDto);
+    Pedido criarPedido(HttpServletRequest request);
 
     List<Pedido> encontrarTodos();
 

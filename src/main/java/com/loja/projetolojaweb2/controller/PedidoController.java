@@ -11,6 +11,7 @@ import com.loja.projetolojaweb2.dto.produtoToPedidoDto.ProdutoToPedidoDto;
 import com.loja.projetolojaweb2.service.PedidoService;
 import com.loja.projetolojaweb2.util.DataAutomatica;
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,10 +85,16 @@ public class PedidoController {
             @ApiResponse(responseCode = "200",description = "funcionário excluido com sucesso"),
             @ApiResponse(responseCode = "400",description = "Erro ao excluir funcionário")
     })*/
-    @PutMapping("/addProduto")
-    public ResponseEntity<Pedido> addProdutoToPedido(@RequestBody ProdutoToPedidoDto produtoToPedidoDto) {
-        Pedido pedido = pedidoService.addProdutoToPedido(produtoToPedidoDto);
-        return ResponseEntity.ok(pedido);
+//    @PutMapping("/addProduto")
+//    public ResponseEntity<Pedido> addProdutoToPedido(@RequestBody ProdutoToPedidoDto produtoToPedidoDto) {
+//        Pedido pedido = pedidoService.addProdutoToPedido(produtoToPedidoDto);
+//        return ResponseEntity.ok(pedido);
+//    }
+
+    @PostMapping("/criarPedido")
+    public ResponseEntity<Pedido> criarPedido(HttpServletRequest request){
+        //pedidoService.criarPedido(request);
+        return ResponseEntity.ok(pedidoService.criarPedido(request));
     }
 
 }

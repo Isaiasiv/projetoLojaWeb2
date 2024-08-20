@@ -28,16 +28,19 @@ public class Pedido {
 
     private String transportadora;
 
-    @OneToMany(mappedBy = "pedidos",fetch = FetchType.LAZY,targetEntity = Produto.class)
-    private List<Produto> produtos;
+//    @OneToMany(mappedBy = "pedidos",fetch = FetchType.LAZY,targetEntity = Produto.class)
+//    private List<Produto> produtos;
 
     @ManyToOne
     @JoinColumn(name = "fk_pedidoUsuario")
     @JsonIgnore
     private Usuario usuario;
 
-    public void addProduto(Produto produto) {
-        this.produtos.add(produto);
-        produto.setPedidos(this);
-    }
+    @OneToMany(mappedBy = "pedido",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private List<ItemPedido> itemPedido;
+
+//    public void addProduto(Produto produto) {
+//        this.produtos.add(produto);
+//        produto.setPedidos(this);
+//    }
 }
